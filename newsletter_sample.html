@@ -1,0 +1,196 @@
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Cybersecurity Trends Newsletter</title>
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f0f4f8;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border: 1px solid #d9e2ff;
+    }
+    .header {
+      background-color: #0A2647;
+      background-image: url('cyber.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 20px;
+      height: 300px;
+      text-align: center;
+      position: relative;
+    }
+    .header img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      padding: 5px;
+    }
+    .content {
+      padding: 20px;
+      line-height: 1.6;
+      color: #333333;
+    }
+    .ai-content {
+      background-color: #f0f4f8;
+      padding: 15px;
+      border-left: 4px solid #086815;
+      margin: 10px 0;
+    }
+    .ai-content h3 {
+      margin: 0 0 10px;
+      color: #0A2647;
+      font-size: 18px;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #155f25;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .footer {
+      background-color: #f0f4f8;
+      padding: 15px;
+      text-align: center;
+      font-size: 12px;
+      color: #666666;
+    }
+    .footer a {
+      color: #0A2647;
+      text-decoration: none;
+    }
+    @media only screen and (max-width: 600px) {
+      .container {
+        width: 100% !important;
+      }
+      .content {
+        padding: 10px;
+      }
+      .header img {
+        max-width: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+  </script>
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f0f4f8;">
+    <tr>
+      <td align="center">
+        <table class="container" cellpadding="0" cellspacing="0">
+          <!-- Header -->
+          <tr>
+            <td class="header">
+              <img src="logo.png" alt="CSaaS Logo">
+              <h1 style="color: #ffffff; font-size: 24px; margin: 10px 0;">Cybersecurity Trends</h1>
+              <p style="color: #d9e2ff; margin: 0;">Tailored Insights for Your Industry</p>
+            </td>
+          </tr>
+          <!-- Content -->
+          <tr>
+            <td class="content">
+              <p>Dear {contactfield=firstname|John},</p>
+              <p>Stay ahead with the latest cybersecurity trends for the {contactfield=industry|Law} sector. Our insights help you protect your business and comply with regulations like GDPR.</p>
+              <div class="ai-content">
+                <h3>Trends for the Law Sector</h3>
+                <p>In 2025, law firms face rising ransomware attacks targeting client data. Adopting multi-factor authentication (MFA) and regular staff training can reduce risks by 70%. GDPR compliance remains critical, with fines reaching £17.5M for breaches in 2024. Invest in encrypted communication tools to safeguard sensitive case files.</p>
+              </div>
+              <p>Explore more ways to secure your firm with CSaaS.</p>
+              <a href="https://csaas.uk/" class="cta-button">Discover Solutions</a>
+            </td>
+          </tr>
+          <!-- Additional Sample Content for Other Sectors -->
+          <tr>
+            <td class="content">
+              <div class="ai-content">
+                <h3>Trends for the HR Sector</h3>
+                <p>HR departments are seeing increased phishing attacks targeting employee data. In 2024, 65% of UK breaches involved social engineering. Implement email filtering and conduct phishing simulations to boost resilience. GDPR-compliant data storage solutions are essential for employee records.</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="content">
+              <div class="ai-content">
+                <h3>Trends for the Marketing Sector</h3>
+                <p>Marketing teams must secure customer data amid growing adtech vulnerabilities. In 2025, zero-trust architectures are gaining traction, with 40% adoption in UK firms. Use secure CRM platforms and regular audits to comply with the UK Data Protection Act.</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="content">
+              <div class="ai-content">
+                <h3>Trends for the Finance Sector</h3>
+                <p>Financial institutions face sophisticated cyberattacks, with 2024 seeing a 30% rise in API-based attacks. Adopt AI-driven threat detection and ensure FCA compliance with robust encryption. Staff training on insider threats can prevent 50% of breaches.</p>
+              </div>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td class="footer">
+              <p>CSaaS<br>
+                 123 Business Street, London, UK</p>
+              <p>This email complies with GDPR and the UK Data Protection Act. You can <a href="{unsubscribe_url}">unsubscribe</a> at any time.</p>
+              <p><a href="https://csaas.uk/privacy-policy/">Privacy Policy</a> | © 2025 CSaaS</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
